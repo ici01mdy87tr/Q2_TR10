@@ -462,7 +462,7 @@ header h1 i {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 12px;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
 }
 
 .lucky-box {
@@ -497,6 +497,25 @@ header h1 i {
     font-size: 0.85rem;
     font-weight: 700;
     color: var(--text-primary);
+}
+
+/* Exercise Box */
+.exercise-box {
+    background: rgba(255, 255, 255, 0.5);
+    border: 2px solid rgba(162, 190, 226, 0.25);
+    border-radius: 20px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 4px 10px rgba(162, 190, 226, 0.05);
+    margin-bottom: 25px;
+}
+
+.exercise-box .lucky-icon {
+    font-size: 1.35rem;
+    color: #4ea8de;
+    filter: drop-shadow(0 0 4px rgba(78, 168, 222, 0.3));
 }
 
 /* Action container */
