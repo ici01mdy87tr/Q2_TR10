@@ -445,6 +445,40 @@ header h1 i {
     font-weight: 700;
 }
 
+/* Caution Box */
+.caution-box {
+    background: rgba(255, 140, 0, 0.06);
+    border: 1px solid rgba(255, 140, 0, 0.2);
+    padding: 18px;
+    border-radius: 16px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 15px rgba(255, 140, 0, 0.05);
+}
+
+.caution-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #ffb703;
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.caution-title i {
+    font-size: 1rem;
+    color: #ffb703;
+    filter: drop-shadow(0 0 5px rgba(255, 183, 3, 0.4));
+}
+
+#caution-text {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--text-primary);
+}
+
 /* Action container */
 .action-container {
     display: flex;

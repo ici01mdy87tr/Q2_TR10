@@ -16,6 +16,16 @@ ADVICES = {
     "末吉": "焦りは禁物。今日は準備期間と捉え、ゆっくり自分のペースを保ちましょう。",
     "凶": "少し慎重に行動すべき日。無理をせず、自分を労わる時間を作ると吉です。"
 }
+CAUTIONS = [
+    "スマートフォンの使いすぎによる目の疲れに注意しましょう。",
+    "忘れ物がないか、外出前にバッグの中身をダブルチェックしてください。",
+    "大切な約束やスケジュールをもう一度確認しておくと安心です。",
+    "言葉遣いに少しだけ気を使うと、対人関係のトラブルを未然に防げます。",
+    "食べすぎや飲みすぎに注意し、胃腸を労わってあげましょう。",
+    "お金の使い道は慎重に。衝動買いは避けた方が賢明です。",
+    "姿勢が悪くなっていないか意識してみましょう。肩こりの予防になります。",
+    "焦って判断を下さず、一呼吸置いてから決めるようにしましょう。"
+]
 
 @app.route('/')
 def index():
@@ -39,6 +49,7 @@ def get_fortune():
     color = rng.choice(LUCKY_COLORS)
     item = rng.choice(LUCKY_ITEMS)
     advice = ADVICES[fortune]
+    caution = rng.choice(CAUTIONS)
     
     # 運勢ごとのスコア (0-100)
     scores = {
@@ -57,6 +68,7 @@ def get_fortune():
         "color": color,
         "item": item,
         "advice": advice,
+        "caution": caution,
         "scores": score
     })
 

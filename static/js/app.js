@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultDateText = document.getElementById('result-date-text');
     const fortuneBadgeVal = document.getElementById('fortune-badge-val');
     const adviceText = document.getElementById('advice-text');
+    const cautionText = document.getElementById('caution-text');
     
     const loveBar = document.getElementById('love-bar');
     const moneyBar = document.getElementById('money-bar');
@@ -65,6 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 resultUserName.textContent = name;
                 fortuneBadgeVal.textContent = data.fortune;
                 adviceText.textContent = data.advice;
+                cautionText.textContent = data.caution;
                 luckyColorVal.textContent = data.color;
                 luckyItemVal.textContent = data.item;
                 
