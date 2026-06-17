@@ -430,6 +430,7 @@ header h1 i {
     margin-right: 4px;
 }
 
+.status-label i.fa-star { color: #ffca3a; }
 .status-label i.fa-heart { color: #ff6b8b; }
 .status-label i.fa-coins { color: #ffbc42; }
 .status-label i.fa-briefcase { color: #4ea8de; }

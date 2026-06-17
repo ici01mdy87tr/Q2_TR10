@@ -61,7 +61,9 @@ def get_fortune():
         "凶": {"love": rng.randint(20, 45), "money": rng.randint(20, 45), "work": rng.randint(20, 45)}
     }
     
-    score = scores[fortune]
+    score = scores[fortune].copy()
+    overall = int((score["love"] + score["money"] + score["work"]) / 3)
+    score["overall"] = overall
     
     return jsonify({
         "fortune": fortune,

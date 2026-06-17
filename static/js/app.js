@@ -14,10 +14,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const adviceText = document.getElementById('advice-text');
     const cautionText = document.getElementById('caution-text');
     
+    const overallBar = document.getElementById('overall-bar');
     const loveBar = document.getElementById('love-bar');
     const moneyBar = document.getElementById('money-bar');
     const workBar = document.getElementById('work-bar');
     
+    const overallVal = document.getElementById('overall-val');
     const loveVal = document.getElementById('love-val');
     const moneyVal = document.getElementById('money-val');
     const workVal = document.getElementById('work-val');
@@ -75,6 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // アニメーションを伴うプログレスバー表示
                 setTimeout(() => {
+                    animateProgressBar(overallBar, overallVal, data.scores.overall);
                     animateProgressBar(loveBar, loveVal, data.scores.love);
                     animateProgressBar(moneyBar, moneyVal, data.scores.money);
                     animateProgressBar(workBar, workVal, data.scores.work);
@@ -96,9 +99,11 @@ document.addEventListener('DOMContentLoaded', () => {
         setupSection.classList.remove('hidden');
         
         // プログレスバーをリセット
+        overallBar.style.width = '0%';
         loveBar.style.width = '0%';
         moneyBar.style.width = '0%';
         workBar.style.width = '0%';
+        overallVal.textContent = '0%';
         loveVal.textContent = '0%';
         moneyVal.textContent = '0%';
         workVal.textContent = '0%';
