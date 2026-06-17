@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stellar Fortune - 今日の運勢</title>
+    <meta name="description" content="今日のあなたの運勢を星々が占います。星座と名前を入力して、神秘的な占い結果を受け取りましょう。">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="twinkling"></div>
+    
+    <div class="container">
+        <header>
+            <h1 id="app-title"><i class="fa-solid fa-wand-magic-sparkles"></i> Stellar Fortune</h1>
+            <p class="subtitle">星々が紡ぐ、今日のあなたの物語</p>
+        </header>
+
+        <main>
+            <!-- 入力カード -->
+            <section class="card setup-card" id="setup-section">
+                <h2>あなたの情報を入力してください</h2>
+                <form id="fortune-form">
+                    <div class="form-group">
+                        <label for="user-name">お名前（ニックネーム可）</label>
+                        <input type="text" id="user-name" required placeholder="例: ひかり" autocomplete="off">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="user-zodiac">星座</label>
+                        <select id="user-zodiac" required>
+                            <option value="" disabled selected>星座を選択してください</option>
+                            <option value="牡羊座">牡羊座 (3/21 - 4/19)</option>
+                            <option value="牡牛座">牡牛座 (4/20 - 5/20)</option>
+                            <option value="双子座">双子座 (5/21 - 6/21)</option>
+                            <option value="蟹座">蟹座 (6/22 - 7/22)</option>
+                            <option value="獅子座">獅子座 (7/23 - 8/22)</option>
+                            <option value="乙女座">乙女座 (8/23 - 9/22)</option>
+                            <option value="天秤座">天秤座 (9/23 - 10/23)</option>
+                            <option value="蠍座">蠍座 (10/24 - 11/22)</option>
+                            <option value="射手座">射手座 (11/23 - 12/21)</option>
+                            <option value="山羊座">山羊座 (12/22 - 1/19)</option>
+                            <option value="水瓶座">水瓶座 (1/20 - 2/18)</option>
+                            <option value="魚座">魚座 (2/19 - 3/20)</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" id="btn-submit" class="btn-primary">
+                        <span>星の導きを得る</span>
+                        <i class="fa-solid fa-star"></i>
+                    </button>
+                </form>
+            </section>
+
+            <!-- 演出中画面 -->
+            <section class="card loading-card hidden" id="loading-section">
+                <div class="crystal-ball-container">
+                    <div class="crystal-ball">
+                        <div class="glow"></div>
+                        <div class="sparkles"></div>
+                    </div>
+                </div>
+                <p class="loading-text">星々の軌道を集計中...</p>
+            </section>
+
+            <!-- 結果カード -->
+            <section class="card result-card hidden" id="result-section">
+                <div class="result-header">
+                    <p class="result-date" id="result-date-text"></p>
+                    <h2 class="result-name"><span id="result-user-name"></span> さんの運勢</h2>
+                </div>
+
+                <div class="fortune-badge-container">
+                    <div class="fortune-badge" id="fortune-badge-val">大吉</div>
+                </div>
+
+                <div class="advice-box">
+                    <i class="fa-solid fa-quote-left"></i>
+                    <p id="advice-text"></p>
+                    <i class="fa-solid fa-quote-right"></i>
+                </div>
+
+                <!-- ステータスバー -->
+                <div class="status-grid">
+                    <div class="status-item">
+                        <span class="status-label"><i class="fa-solid fa-heart"></i> 恋愛運</span>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" id="love-bar" style="width: 0%"></div>
+                        </div>
+                        <span class="status-value" id="love-val">0%</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label"><i class="fa-solid fa-coins"></i> 金運</span>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" id="money-bar" style="width: 0%"></div>
+                        </div>
+                        <span class="status-value" id="money-val">0%</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label"><i class="fa-solid fa-briefcase"></i> 仕事運</span>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" id="work-bar" style="width: 0%"></div>
+                        </div>
+                        <span class="status-value" id="work-val">0%</span>
+                    </div>
+                </div>
+
+                <!-- ラッキーアイテムなど -->
+                <div class="lucky-grid">
+                    <div class="lucky-box">
+                        <i class="fa-solid fa-palette lucky-icon"></i>
+                        <div class="lucky-content">
+                            <span class="lucky-label">ラッキーカラー</span>
+                            <span class="lucky-val" id="lucky-color-val">ゴールド</span>
+                        </div>
+                    </div>
+                    <div class="lucky-box">
+                        <i class="fa-solid fa-gift lucky-icon"></i>
+                        <div class="lucky-content">
+                            <span class="lucky-label">ラッキーアイテム</span>
+                            <span class="lucky-val" id="lucky-item-val">お気に入りの本</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-container">
+                    <button id="btn-retry" class="btn-secondary">
+                        <i class="fa-solid fa-rotate-left"></i> もう一度占う
+                    </button>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <p>&copy; 2026 Stellar Fortune. Cosmic energy guides your path.</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
