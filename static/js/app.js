@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const luckyColorVal = document.getElementById('lucky-color-val');
     const luckyItemVal = document.getElementById('lucky-item-val');
     const luckyExerciseVal = document.getElementById('lucky-exercise-val');
+    const luckyMusicVal = document.getElementById('lucky-music-val');
 
     // 日付の設定
     const today = new Date();
@@ -73,6 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 luckyColorVal.textContent = data.color;
                 luckyItemVal.textContent = data.item;
                 luckyExerciseVal.textContent = data.exercise;
+                luckyMusicVal.textContent = data.music;
                 
                 // 運勢に応じたグラデーションやエフェクト（おみくじの強さ）
                 updateBadgeStyle(data.fortune);
